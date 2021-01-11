@@ -2,6 +2,12 @@
 publish = "build/site"
 command = "npm run build:preview"
 
+[build.environment]
+CI = "true"
+# WARNING netlify-build ignores NPM_FLAGS when installing plugins, so use low-level NPM_CONFIG_ flag instead
+#NPM_FLAGS = "--no-optional"
+NPM_CONFIG_OPTIONAL = "false"
+
 [[redirects]]
 from = "/static/assets/*"
 to = "/_/:splat"
@@ -13,7 +19,30 @@ package = "netlify-plugin-checklinks"
 entryPoints = ["**/*.html"]
 recursive = true
 pretty = true
-skipPatterns = []
+skipPatterns = [
+    "load public/index.html",
+    " href=\"file://",
+    "static/assets/js",
+    "fonts.gstatic.com",
+    "https://www.medium.com/neo4j",
+    "https://community.neo4j.com?ref=developer-footer",
+    "https://neo4j.com/terms/",
+    "https://neo4j.com/privacy-policy/",
+    "https://neo4j.com/sitemap/",
+    "https://neo4j.com/contact-us?ref=footer",
+    "https://neo4j.com/sandbox/?ref=developer-footer",
+    "https://www.medium.com/neo4j",
+    "https://www.youtube.com/neo4j",
+    "https://neo4j.com/graphacademy/?ref=developer-footer",
+    "https://neo4j.com/labs/?ref=developer-footer",
+    "https://www.twitter.com/neo4j",
+    "https://www.youtube.com/neo4j",
+    "https://meetup.com/Neo4j-Online-Meetup/",
+    "https://github.com/neo4j/neo4j",
+    "https://stackoverflow.com/questions/tagged/neo4j",
+    "https://neo4j.com/speaker-program/",
+    "https://fonts.gstatic.com/s/opensans/"
+]
 todoPatterns = []
 checkExternal = false
 followSourceMaps = false

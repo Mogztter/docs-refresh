@@ -20,6 +20,7 @@
     "production:training": "antora --fetch --stacktrace --generator @neo4j/developer-site-generator training.yml",
     "production:developer-subfolders": "antora --fetch --stacktrace developer-subfolders.yml",
     "lint": "npm run lint-xref",
+    "lint-links": "node lint/lint-links.js",
     "lint-xref": "npm run lint-xref:developer-subfolders && npm run lint-xref:developer && npm run lint-xref:labs-docs",
     "lint-xref:developer-subfolders": "antora --generator @antora/xref-validator developer-subfolders.yml",
     "lint-xref:developer": "antora --generator @antora/xref-validator developer.yml",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@antora/xref-validator": "gitlab:antora/xref-validator",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "hyperlink": "^4.6.0"
   }
 }
